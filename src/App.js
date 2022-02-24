@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { db } from "./firebase/firebaseConfig";
+import { collection, query, getDocs } from "firebase/firestore";
+import CardComponent from "./Components/CardComponent";
+
+// REACT - ROUTER - DOM
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+//views
+
+import Home from "./Views/Home/Home";
+import About from "./Views/Contact/Contact";
+import Contact from "./Views/About/About";
 
 function App() {
+  
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        {celularesData.map((data) => {
+          return <CardComponent celularesData={data} key={data.id} />;
+        })}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
